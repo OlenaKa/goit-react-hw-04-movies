@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import "./OneMovie.css";
 const OneMovie = ({ movie }) => {
   const { title, poster_path, overview, genres, vote_average } = movie;
-  console.log(movie);
   return (
     <article className="movie-info">
       {poster_path && (

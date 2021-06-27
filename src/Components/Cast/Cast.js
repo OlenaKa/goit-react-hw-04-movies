@@ -1,10 +1,9 @@
 import { Component } from "react";
-import getMovies from "../API/Api_Servise";
+import getMovies from "../../API/Api_Servise";
 class Cast extends Component {
   state = {};
 
   async componentDidMount() {
-    console.log(this.props);
     const movieId = this.props.match.params.movieId;
 
     const result = await getMovies({ option: `/${movieId}/credits` });

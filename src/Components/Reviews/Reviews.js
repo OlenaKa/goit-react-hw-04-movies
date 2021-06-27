@@ -1,6 +1,6 @@
 import { Component } from "react";
-import getMovies from "../API/Api_Servise";
-import NotFound from "./NotFound";
+import getMovies from "../../API/Api_Servise";
+import NotFound from "../NotFound";
 class Reviews extends Component {
   state = {};
   async componentDidMount() {

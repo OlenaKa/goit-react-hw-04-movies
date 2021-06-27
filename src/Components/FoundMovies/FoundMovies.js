@@ -1,4 +1,5 @@
 import { NavLink, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const FoundMovies = ({ movies, location }) => (
   <ul>
@@ -15,3 +16,8 @@ const FoundMovies = ({ movies, location }) => (
 );
 
 export default withRouter(FoundMovies);
+
+FoundMovies.propTypes = {
+  movies: PropTypes.array.isRequired,
+  location: PropTypes.object.isRequired,
+};

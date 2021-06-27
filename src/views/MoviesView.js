@@ -2,6 +2,7 @@ import { Component } from "react";
 import getMovies from "../API/Api_Servise";
 import FoundMovies from "../Components/FoundMovies";
 import SearchForm from "../Components/SearchForm";
+import ErrorMsg from "../Components/ErrorMsg";
 
 class MoviesSearch extends Component {
   state = {
@@ -35,13 +36,19 @@ class MoviesSearch extends Component {
   };
 
   runSearch = async (searchQuery) => {
-    return await getMovies({
-      key: "search",
-      options: {
-        query: `${searchQuery}`,
-        page: 1,
-      },
-    });
+    try {
+      return await getMovies({
+        key: "search",
+        options: {
+          query: `${searchQuery}`,
+          page: 1,
+        },
+      });
+    } catch (err) {
+      this.setState({
+        error: "something",
+      });
+    }
   };
 
   render() {
@@ -49,6 +56,7 @@ class MoviesSearch extends Component {
       <>
         <SearchForm onSubmit={this.handleSubmit} />
         {this.state.movies && <FoundMovies movies={this.state.movies} />}
+        {this.state.error && <ErrorMsg />}
       </>
     );
   }

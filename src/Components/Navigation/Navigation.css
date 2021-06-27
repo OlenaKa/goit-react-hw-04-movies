@@ -1,0 +1,18 @@
+.nav-container {
+  height: 30px;
+  border-bottom: 1px solid rgb(156, 155, 155);
+}
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  width: 150px;
+  list-style: none;
+}
+.NavLink {
+  color: darkslategrey;
+  margin-bottom: 10px;
+}
+
+.NavLink_active {
+  color: lightcoral;
+}

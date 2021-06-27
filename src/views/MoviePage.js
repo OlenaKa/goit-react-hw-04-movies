@@ -1,19 +1,22 @@
 import { Component } from "react";
-// import { Route, NavLink } from "react-router-dom"
 import getMovies from "../API/Api_Servise";
-// import Reviews from "../Components/Reviews"
-// import Cast from "../Components/Cast"
 import OneMovie from "../Components/OneMovie";
 import AdditionalInfo from "../Components/AdditionalInfo";
 import routes from "../routes";
+import ErrorMsg from "../Components/ErrorMsg";
 class MoviePage extends Component {
   state = {};
 
   async componentDidMount() {
     const movieId = this.props.match.params.movieId;
-    const result = await getMovies({ option: `/${movieId}` });
-
-    this.setState({ ...result });
+    try {
+      const result = await getMovies({ option: `/${movieId}` });
+      this.setState({ ...result });
+    } catch (err) {
+      this.setState({
+        error: "something",
+      });
+    }
   }
 
   onHandleBack = () => {
@@ -22,14 +25,18 @@ class MoviePage extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <>
-        <button type="button" onClick={this.onHandleBack}>
+        <button
+          type="button"
+          onClick={this.onHandleBack}
+          className="goBack-btn"
+        >
           Go back
         </button>
         <OneMovie movie={this.state} />
         <AdditionalInfo id={this.state.id} />
+        {this.state.error && <ErrorMsg />}
       </>
     );
   }
